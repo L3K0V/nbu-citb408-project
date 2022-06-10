@@ -1,3 +1,4 @@
+/* (C)2022 */
 package edu.nbu.f101445;
 
 import java.util.UUID;

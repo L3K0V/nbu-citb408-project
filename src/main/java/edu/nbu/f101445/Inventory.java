@@ -1,3 +1,4 @@
+/* (C)2022 */
 package edu.nbu.f101445;
 
 import java.time.LocalDate;
@@ -34,7 +35,7 @@ public class Inventory implements IManageable {
         return good;
     }
 
-    public synchronized void removeFromStock(Good good, double quantity) throws OutOfStockException {
+    public void removeFromStock(Good good, double quantity) throws OutOfStockException {
         if (!stock.containsKey(good) || stock.get(good) < quantity) {
             throw new OutOfStockException();
         }

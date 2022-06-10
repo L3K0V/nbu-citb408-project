@@ -1,7 +1,7 @@
+/* (C)2022 */
 package edu.nbu.f101445.adjustments;
 
 import edu.nbu.f101445.Good;
-
 import java.time.LocalDate;
 
 public class CampaignAdjustment implements IAdjustable {
@@ -31,7 +31,9 @@ public class CampaignAdjustment implements IAdjustable {
     @Override
     public double adjust(Good good) {
 
-        if (LocalDate.now().isAfter(good.getExpirationDate().minusDays(daysBeforeExpiration))) {
+        final var target = good.getExpirationDate().minusDays(daysBeforeExpiration);
+        final var now = LocalDate.now();
+        if (now.isAfter(target) || now.isEqual(target)) {
             return -(campaignPercentage * good.getPrice());
         }
 

@@ -1,15 +1,17 @@
+/* (C)2022 */
 package edu.nbu.f101445;
 
 import edu.nbu.f101445.adjustments.IAdjustable;
-
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 class Store implements IProfitable, IManageable {
 
     private final Inventory inventory;
-    private List<Cashier> cashierList;
-    private List<CashDesk> cashDesks;
+    private final List<Cashier> cashierList;
+    private final List<CashDesk> cashDesks;
 
     private final List<IAdjustable> adjustmentsList;
 
@@ -36,19 +38,28 @@ class Store implements IProfitable, IManageable {
         return this.adjustmentsList;
     }
 
+    public void addCashier(Cashier... cashiers) {
+        Collections.addAll(cashierList, cashiers);
+    }
+
+    public void addDesks(CashDesk... desks) {
+        Collections.addAll(cashDesks, desks);
+    }
+
     @Override
     public double profit() {
-        return 0;
+        return cashDesks.stream().map(CashDesk::profit).reduce(0.0, Double::sum);
     }
 
     @Override
     public double income() {
-        return 0;
+        return cashDesks.stream().map(CashDesk::income).reduce(0.0, Double::sum);
     }
 
     @Override
     public double outcome() {
-        final var cashiersOutcome = cashierList.stream().map(Cashier::getSalary).reduce(0.0, Double::sum);
+        final var cashiersOutcome =
+                cashierList.stream().map(Cashier::getSalary).reduce(0.0, Double::sum);
         final var inventoryOutcome = inventory.outcome();
         return cashiersOutcome + inventoryOutcome;
     }

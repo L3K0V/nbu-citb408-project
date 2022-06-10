@@ -1,8 +1,8 @@
+/* (C)2022 */
 package edu.nbu.f101445.adjustments;
 
 import edu.nbu.f101445.Good;
 import edu.nbu.f101445.GoodCategory;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +35,7 @@ public class ProfitForCategoryAdjustment implements IAdjustable {
 
     @Override
     public double adjust(Good good) {
-        return profitForCategory.getOrDefault(good.getCategory(), 0.0);
+        return good.getPrice() * profitForCategory.getOrDefault(good.getCategory(), 0.0);
     }
 
     @Override
