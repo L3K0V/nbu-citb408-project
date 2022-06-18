@@ -13,7 +13,7 @@ public class CashDesk implements IProfitable, IManageable {
     private final Cashier cashier;
     private final Store store;
     private final List<Receipt> receipts;
-    Receipt openReceipt;
+    private Receipt openReceipt;
 
     public CashDesk(Cashier cashier, Store store) {
         this.cashier = cashier;

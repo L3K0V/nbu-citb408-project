@@ -30,7 +30,7 @@ public class ProfitForCategoryAdjustment implements IAdjustable {
 
     @Override
     public boolean capAdjustQuantity() {
-        return false;
+        return true;
     }
 
     @Override
